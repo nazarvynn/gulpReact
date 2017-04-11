@@ -15,13 +15,13 @@ var sourcemaps   = require('gulp-sourcemaps');
 var onError = function(err) {
     notify.onError({
         title:    "Error",
-        message:  "<%= error %>",
+        message:  "<%= error %>"
     })(err);
     this.emit('end');
 };
 
 var plumberOptions = {
-    errorHandler: onError,
+    errorHandler: onError
 };
 
 var jsFiles = {
@@ -29,9 +29,7 @@ var jsFiles = {
 
     ],
     source: [
-        'assets/js/src/Utility.js',
-        'assets/js/src/components/ComponentForm.jsx',
-        'assets/js/src/components/Component.jsx',
+        'assets/js/src/components/Component.jsx'
     ]
 };
 
@@ -79,7 +77,7 @@ gulp.task('concat', ['copy-react', 'copy-react-dom', 'eslint'], function() {
         .pipe(sourcemaps.init())
         .pipe(babel({
             only: [
-                'assets/js/src/components',
+                'assets/js/src/components'
             ],
             compact: false
         }))
@@ -91,19 +89,17 @@ gulp.task('concat', ['copy-react', 'copy-react-dom', 'eslint'], function() {
 // Compile Sass to CSS
 gulp.task('sass', function() {
     var autoprefixerOptions = {
-        browsers: ['last 2 versions'],
+        browsers: ['last 2 versions']
     };
 
     var filterOptions = '**/*.css';
 
     var reloadOptions = {
-        stream: true,
+        stream: true
     };
 
     var sassOptions = {
-        includePaths: [
-
-        ]
+        includePaths: []
     };
 
     return gulp.src('assets/sass/**/*.scss')
@@ -119,8 +115,9 @@ gulp.task('sass', function() {
 
 // Watch JS/JSX and Sass files
 gulp.task('watch', function() {
-    gulp.watch('assets/js/src/**/*.{js,jsx}', ['concat']);
+    gulp.watch('assets/js/src/**/*.{js,jsx}', ['concat']).on('change', reload);
     gulp.watch('assets/sass/**/*.scss', ['sass']);
+    gulp.watch('*.html').on('change', reload);
 });
 
 // BrowserSync
@@ -128,10 +125,10 @@ gulp.task('browsersync', function() {
     browserSync({
         server: {
             baseDir: './'
-        },
-        open: false,
-        online: false,
-        notify: false,
+        }
+        //open: false,
+        //online: false,
+        //notify: false
     });
 });
 

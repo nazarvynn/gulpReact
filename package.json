@@ -5,6 +5,7 @@
   "devDependencies": {
     "browser-sync": "^2.9.6",
     "gulp": "^3.9.0",
+    "gulp-cli": "^1.2.2",
     "gulp-autoprefixer": "^3.0.2",
     "gulp-babel": "^5.2.1",
     "gulp-concat": "^2.6.0",
